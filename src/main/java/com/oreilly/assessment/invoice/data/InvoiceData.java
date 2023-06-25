@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -51,6 +53,8 @@ public class InvoiceData implements Serializable {
     @Converter
     static class InvoiceDataConverter implements AttributeConverter<InvoiceData, String> {
 
+        private static final Logger LOG = LoggerFactory.getLogger(InvoiceDataConverter.class);
+
         @Override
         public String convertToDatabaseColumn(InvoiceData invoiceData) {
             ObjectWriter writer = new ObjectMapper().registerModule(new JavaTimeModule()).writer();
@@ -58,6 +62,7 @@ public class InvoiceData implements Serializable {
                 return writer.writeValueAsString(invoiceData);
             } catch (JsonProcessingException e) {
                 //TODO find better exception to throw
+                LOG.error("error marshalling InvoiceData object into json string");
                 throw new RuntimeException(e);
             }
         }
@@ -70,6 +75,7 @@ public class InvoiceData implements Serializable {
                 return mapper.readValue(jsonString, InvoiceData.class);
             } catch (JsonProcessingException e) {
                 //TODO find better exception to throw
+                LOG.error("error unmarshalling json string into InvoiceData object");
                 throw new RuntimeException(e);
             }
         }
