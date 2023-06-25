@@ -11,10 +11,6 @@ public class Invoice {
     @Column(name="invoice_id")
     private Long invoiceID;
 
-//    @Column(name="invoice_data")
-//    private String invoiceDataJSON;
-
-//    @Transient //excludes field from the JPA model
     @Column(name="invoice_data")
     @Convert(converter = InvoiceData.InvoiceDataConverter.class)
     private InvoiceData invoiceData;
@@ -43,14 +39,6 @@ public class Invoice {
     public void setInvoiceID(Long invoiceID) {
         this.invoiceID = invoiceID;
     }
-
-//    public String getInvoiceDataJSON() {
-//        return invoiceDataJSON;
-//    }
-//
-//    public void setInvoiceDataJSON(String invoiceData) {
-//        this.invoiceDataJSON = invoiceData;
-//    }
 
     public InvoiceData getInvoiceData() {
         return invoiceData;

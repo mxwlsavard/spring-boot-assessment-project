@@ -29,12 +29,14 @@ public class InvoiceService {
     }
 
     public Map<Long, String> findInvoiceTendersByCustomerID(Long id) {
+        LOG.debug("finding invoice tenders by customer ID: " + id);
+
         List<Invoice> invoices = invoiceRepository.findAllByCustomerID(id);
         Map<Long, String> invoiceTenders = new HashMap<>();
         for(Invoice invoice: invoices) {
-            //TODO: parse the tender type
             invoiceTenders.put(invoice.getInvoiceID(), invoice.getInvoiceData().getTenderDetails().getType());
         }
         return invoiceTenders;
     }
+
 }
