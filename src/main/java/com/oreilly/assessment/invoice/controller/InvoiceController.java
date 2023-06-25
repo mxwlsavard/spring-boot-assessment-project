@@ -21,7 +21,19 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/customers/{id}/tenders/")
+    /*
+    This application assumes there is only 1 tender used per invoice
+
+    This endpoint returns a response like:
+    {
+        "55": "cash",
+        "56": "cash"
+    }
+    I think a better design would be to return the entire invoice entity from an invoices endpoint
+    and leave it up to the client to parse the tender field. You could let the client filter out
+    fields it doesn't need by doing something like this https://iamvickyav.medium.com/spring-boot-dynamically-ignore-fields-while-converting-java-object-to-json-e8d642088f55
+     */
+    @GetMapping("/customers/{id}/tenders")
     public Map<Long, String> findInvoiceTendersByCustomerID(@PathVariable Long id) {
         LOG.debug("Received invoice tenders by customer ID request: " + id);
 
