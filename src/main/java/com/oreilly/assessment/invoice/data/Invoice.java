@@ -1,5 +1,7 @@
 package com.oreilly.assessment.invoice.data;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,13 +14,13 @@ public class Invoice {
     private Long invoiceID;
 
     @Column(name="invoice_data")
-    @Convert(converter = InvoiceData.InvoiceDataConverter.class)
-    private InvoiceData invoiceData;
+    @Convert(converter = InvoiceDataConverter.class)
+    private JsonNode invoiceData;
 
     public Invoice() {
     }
 
-    public Invoice(Long customerID, Long invoiceID, InvoiceData invoiceData) {
+    public Invoice(Long customerID, Long invoiceID, JsonNode invoiceData) {
         this.customerID = customerID;
         this.invoiceID = invoiceID;
         this.invoiceData = invoiceData;
@@ -40,11 +42,11 @@ public class Invoice {
         this.invoiceID = invoiceID;
     }
 
-    public InvoiceData getInvoiceData() {
+    public JsonNode getInvoiceData() {
         return invoiceData;
     }
 
-    public void setInvoiceData(InvoiceData invoiceData) {
+    public void setInvoiceData(JsonNode invoiceData) {
         this.invoiceData = invoiceData;
     }
 }

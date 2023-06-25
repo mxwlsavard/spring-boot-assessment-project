@@ -29,14 +29,14 @@ public class InvoiceController {
         "55": "cash",
         "56": "cash"
     }
-    I wrote this to *literally* match the requirements (as I interpreted them) but I think a better design
+    I wrote this to *literally* match the requirements as I interpreted them, but I think a better design
     would be to return the entire invoice entity from an /invoices endpoint and leave it up to the client
     to parse the tender field. You could let the client filter out fields it doesn't need by doing
     something like this https://iamvickyav.medium.com/spring-boot-dynamically-ignore-fields-while-converting-java-object-to-json-e8d642088f55
      */
     @GetMapping("/customers/{id}/tenders")
     public Map<Long, String> findInvoiceTendersByCustomerID(@PathVariable Long id) {
-        LOG.debug("Received invoice tenders by customer ID request: " + id);
+        LOG.debug("Received request for invoice tenders by customer ID: " + id);
 
         return invoiceService.findInvoiceTendersByCustomerID(id);
     }

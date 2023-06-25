@@ -34,7 +34,7 @@ public class InvoiceService {
         List<Invoice> invoices = invoiceRepository.findAllByCustomerID(id);
         Map<Long, String> invoiceTenders = new HashMap<>();
         for(Invoice invoice: invoices) {
-            invoiceTenders.put(invoice.getInvoiceID(), invoice.getInvoiceData().getTenderDetails().getType());
+            invoiceTenders.put(invoice.getInvoiceID(), invoice.getInvoiceData().get("tenderDetails").get("type").asText());
         }
         return invoiceTenders;
     }
