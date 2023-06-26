@@ -36,12 +36,5 @@ public class DataBootstrap {
             throw new RuntimeException(e);
         }
         LOG.debug("repository loaded: " + (invoiceRepository.findAllByCustomerID(2L).size() == 2));
-
-//        TenderDetails tenderDetails = new TenderDetails(1.2, "cash");
-//        invoiceRepository.save(new Invoice(1L, 54L, new InvoiceData(LocalTime.now(), tenderDetails, 999)));//"{\"time\": 19:53, \"tenderDetails\": {\"amount\": 23.43, \"type\": \"cash\"}, storeNumber:\"999\"}"));
-//        invoiceRepository.save(new Invoice(2L, 55L, new InvoiceData(LocalTime.now(), tenderDetails, 999)));
-//        invoiceRepository.save(new Invoice(2L, 56L, new InvoiceData(LocalTime.now(), tenderDetails, 999)));
-//        LOG.debug("repository loaded: " + (invoiceRepository.findAllByCustomerID(2L).size() == 2));
-
     }
 }
