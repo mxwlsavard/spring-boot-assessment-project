@@ -7,11 +7,11 @@ import javax.persistence.*;
 @Entity
 public class Invoice {
     @Column(name="customer_id")
-    private Long customerID;
+    private long customerID;
 
     @Id
     @Column(name="invoice_id")
-    private Long invoiceID;
+    private long invoiceID;
 
     @Column(name="invoice_data")
     @Convert(converter = InvoiceDataConverter.class)
@@ -20,25 +20,25 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(Long customerID, Long invoiceID, JsonNode invoiceData) {
+    public Invoice(long customerID, long invoiceID, JsonNode invoiceData) {
         this.customerID = customerID;
         this.invoiceID = invoiceID;
         this.invoiceData = invoiceData;
     }
 
-    public Long getCustomerID() {
+    public long getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Long customerID) {
+    public void setCustomerID(long customerID) {
         this.customerID = customerID;
     }
 
-    public Long getInvoiceID() {
+    public long getInvoiceID() {
         return invoiceID;
     }
 
-    public void setInvoiceID(Long invoiceID) {
+    public void setInvoiceID(long invoiceID) {
         this.invoiceID = invoiceID;
     }
 

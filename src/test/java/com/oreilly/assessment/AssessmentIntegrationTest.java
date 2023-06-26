@@ -46,7 +46,7 @@ public class AssessmentIntegrationTest {
 
     @Test
     public void getMultipleTenders() {
-        Long id = 200L;
+        long id = 200L;
         JsonNode expected;
         JsonNode actual;
         String response = this.restTemplate.getForObject("http://localhost:" + port + "/customers/" + id + "/tenders", String.class);
@@ -63,7 +63,7 @@ public class AssessmentIntegrationTest {
 
     @Test
     public void getForCustomerWithNoTenders() {
-        Long id = 0L;
+        long id = 0L;
         JsonNode expected;
         JsonNode actual;
         String response = this.restTemplate.getForObject("http://localhost:" + port + "/customers/" + id + "/tenders", String.class);
